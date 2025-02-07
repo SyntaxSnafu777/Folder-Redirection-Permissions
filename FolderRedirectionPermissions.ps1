@@ -40,6 +40,12 @@ foreach ($SubFolder in $SubFolders) {
 
     # Grant full control to the specific user
     ICACLS "$SubFolderPath" /grant "${UserAccount}:(OI)(CI)F"
+	
+	# Ensure that inheritance is enabled so user's subfolders get the same permissions
+    ICACLS "$SubFolderPath" /inheritance:e
+
+    # Propagate permissions to all user's subfolders and files
+    ICACLS "$SubFolderPath" /T /C /grant "${UserAccount}:(OI)(CI)F"
 }
 
 Write-Host "Folder redirection permissions have been updated."
