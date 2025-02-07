@@ -20,10 +20,10 @@ ICACLS "$Folder" /grant "SYSTEM:(OI)(CI)F"
 ICACLS "$Folder" /grant "$Domain\Domain Admins:(OI)(CI)F"
 
 # Give Specific Domain Admin Full Control
-ICACLS "$Folder" /grant "$Domain\$DomAdmin:(OI)(CI)F"
+ICACLS "$Folder" /grant "${Domain}\${DomAdmin}:(OI)(CI)F"
 
 # Apply Create Folder/Append Data, List Folder/Read Data, Read Attributes, Traverse Folder/Execute File, Read permissions to this folder only
-ICACLS "$Folder" /grant "$Domain\$RedirGroup:(AD,REA,RA,X,RC,RD,S)"
+ICACLS "$Folder" /grant "${Domain}\${RedirGroup}:(AD,REA,RA,X,RC,RD,S)"
 
 # Disable inheritance on the main folder to avoid permission conflicts
 ICACLS "$Folder" /inheritance:r
